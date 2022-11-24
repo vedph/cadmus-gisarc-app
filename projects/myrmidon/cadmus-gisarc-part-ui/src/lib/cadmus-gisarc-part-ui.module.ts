@@ -26,6 +26,7 @@ import { RouterModule } from '@angular/router';
 // cadmus
 import { CadmusCoreModule } from '@myrmidon/cadmus-core';
 import { CadmusMatPhysicalSizeModule } from '@myrmidon/cadmus-mat-physical-size';
+import { CadmusRefsDecoratedCountsModule } from '@myrmidon/cadmus-refs-decorated-counts';
 import { CadmusStateModule } from '@myrmidon/cadmus-state';
 import { CadmusUiModule } from '@myrmidon/cadmus-ui';
 
@@ -65,6 +66,7 @@ import { EpiSupportPartComponent } from './epi-support-part/epi-support-part.com
     CadmusStateModule,
     CadmusUiModule,
     CadmusMatPhysicalSizeModule,
+    CadmusRefsDecoratedCountsModule
   ],
   exports: [
     EpiSupportPartComponent

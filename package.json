@@ -45,6 +45,7 @@
     "@myrmidon/cadmus-refs-asserted-chronotope": "^1.0.0",
     "@myrmidon/cadmus-refs-asserted-ids": "^1.0.0",
     "@myrmidon/cadmus-refs-assertion": "^1.0.0",
+    "@myrmidon/cadmus-refs-decorated-counts": "^1.0.0",
     "@myrmidon/cadmus-refs-decorated-ids": "^1.0.0",
     "@myrmidon/cadmus-refs-doc-references": "^1.0.0",
     "@myrmidon/cadmus-refs-external-ids": "^1.0.0",

@@ -27,7 +27,7 @@ export const EPI_SUPPORT_PART_TYPEID = 'it.vedph.gisarc.epi-support';
  */
 export const Epi_SUPPORT_PART_SCHEMA = {
   $schema: 'http://json-schema.org/draft-07/schema#',
-  $id: 'www.vedph.it/cadmus/parts/tivac/' + EPI_SUPPORT_PART_TYPEID + '.json',
+  $id: 'www.vedph.it/cadmus/parts/gisarc/' + EPI_SUPPORT_PART_TYPEID + '.json',
   type: 'object',
   title: 'EpiSupportPart',
   required: [
