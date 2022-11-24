@@ -19,7 +19,8 @@ import { EpiWritingPart, EPI_WRITING_PART_TYPEID } from '../epi-writing-part';
  * EpiWriting part editor component.
  * Thesauri: epi-writing-systems, epi-writing-types, epi-writing-languages,
  * epi-writing-techniques, epi-writing-tools, epi-writing-fig-types,
- * epi-writing-fig-features, epi-writing-script-features, epi-writing-frame-types;
+ * epi-writing-fig-features, epi-writing-script-features,
+ * epi-writing-frame-types, epi-writing-metres;
  * decorated-count-ids, decorated-count-tags.
  */
 @Component({
@@ -44,11 +45,16 @@ export class EpiWritingPartComponent
   public hasPoetry: FormControl<boolean>;
   public metres: FormControl<string[]>;
 
+  public lngFlags: Flag[];
   public figFlags: Flag[];
-  public scriptFlags: Flag[];
+  public scrFlags: Flag[];
+  public mtrFlags: Flag[];
 
+  public initialLanguages: string[];
   public initialFigFeatures: string[];
   public initialScriptFeatures: string[];
+  public initialMetres: string[];
+  public initialCounts: DecoratedCount[];
 
   // epi-writing-systems
   public sysEntries: ThesaurusEntry[] | undefined;
@@ -68,6 +74,8 @@ export class EpiWritingPartComponent
   public figFeatEntries: ThesaurusEntry[] | undefined;
   // epi-writing-script-features
   public scriptFeatEntries: ThesaurusEntry[] | undefined;
+  // epi-writing-metres
+  public mtrEntries: ThesaurusEntry[] | undefined;
   // decorated-count-ids
   public cidEntries: ThesaurusEntry[] | undefined;
   // decorated-count-tags
@@ -75,10 +83,15 @@ export class EpiWritingPartComponent
 
   constructor(authService: AuthJwtService, formBuilder: FormBuilder) {
     super(authService, formBuilder);
+    this.lngFlags = [];
     this.figFlags = [];
-    this.scriptFlags = [];
+    this.scrFlags = [];
+    this.mtrFlags = [];
+    this.initialLanguages = [];
     this.initialFigFeatures = [];
     this.initialScriptFeatures = [];
+    this.initialMetres = [];
+    this.initialCounts = [];
     // form
     this.system = formBuilder.control('', {
       validators: [Validators.required, Validators.maxLength(50)],
@@ -124,6 +137,13 @@ export class EpiWritingPartComponent
     });
   }
 
+  private entryToFlag(entry: ThesaurusEntry): Flag {
+    return {
+      id: entry.id,
+      label: entry.value,
+    };
+  }
+
   private updateThesauri(thesauri: ThesauriSet): void {
     let key = 'epi-writing-systems';
     if (this.hasThesaurus(key)) {
@@ -164,18 +184,15 @@ export class EpiWritingPartComponent
     key = 'epi-writing-languages';
     if (this.hasThesaurus(key)) {
       this.lngEntries = thesauri[key].entries;
+      this.lngFlags = this.lngEntries!.map((e) => this.entryToFlag(e));
     } else {
       this.lngEntries = undefined;
+      this.lngFlags = [];
     }
     key = 'epi-writing-fig-features';
     if (this.hasThesaurus(key)) {
       this.figFeatEntries = thesauri[key].entries;
-      this.figFlags = this.figFeatEntries!.map((e) => {
-        return {
-          id: e.id,
-          label: e.value,
-        } as Flag;
-      });
+      this.figFlags = this.figFeatEntries!.map((e) => this.entryToFlag(e));
     } else {
       this.figFeatEntries = undefined;
       this.figFlags = [];
@@ -183,15 +200,18 @@ export class EpiWritingPartComponent
     key = 'epi-writing-script-features';
     if (this.hasThesaurus(key)) {
       this.scriptFeatEntries = thesauri[key].entries;
-      this.scriptFlags = this.scriptFeatEntries!.map((e) => {
-        return {
-          id: e.id,
-          label: e.value,
-        } as Flag;
-      });
+      this.scrFlags = this.scriptFeatEntries!.map((e) => this.entryToFlag(e));
     } else {
       this.scriptFeatEntries = undefined;
-      this.scriptFlags = [];
+      this.scrFlags = [];
+    }
+    key = 'epi-writing-metres';
+    if (this.hasThesaurus(key)) {
+      this.mtrEntries = thesauri[key].entries;
+      this.mtrFlags = this.mtrEntries!.map((e) => this.entryToFlag(e));
+    } else {
+      this.mtrEntries = undefined;
+      this.mtrFlags = [];
     }
     key = 'decorated-count-ids';
     if (this.hasThesaurus(key)) {
@@ -218,6 +238,11 @@ export class EpiWritingPartComponent
       this.form.reset();
       this.system.setValue(this.getDefaultEntryId(this.sysEntries) || '');
       this.type.setValue(this.getDefaultEntryId(this.typeEntries) || '');
+      this.initialCounts = [];
+      this.initialLanguages = [];
+      this.initialFigFeatures = [];
+      this.initialScriptFeatures = [];
+      this.initialMetres = [];
       return;
     }
 
@@ -230,14 +255,15 @@ export class EpiWritingPartComponent
     this.technique.setValue(part.technique || null);
     this.tool.setValue(part.tool || null);
     this.frameType.setValue(part.frameType || null);
-    this.counts.setValue(part.counts || []);
     this.figType.setValue(part.figType || null);
     this.languages.setValue(part.languages || []);
     this.hasPoetry.setValue(part.hasPoetry || false);
-    this.metres.setValue(part.metres || []);
 
+    this.initialCounts = part.counts || [];
+    this.initialLanguages = part.languages;
     this.initialFigFeatures = part.figFeatures || [];
     this.initialScriptFeatures = part.scriptFeatures || [];
+    this.initialMetres = part.metres || [];
 
     this.form.markAsPristine();
   }
@@ -274,11 +300,23 @@ export class EpiWritingPartComponent
     return part;
   }
 
+  public onCountsChange(counts: DecoratedCount[]): void {
+    this.counts.setValue(counts);
+  }
+
+  public onLngIdsChange(ids: string[]): void {
+    this.languages.setValue(ids);
+  }
+
   public onFigIdsChange(ids: string[]): void {
     this.figFeatures.setValue(ids);
   }
 
   public onScriptIdsChange(ids: string[]): void {
     this.scriptFeatures.setValue(ids);
+  }
+
+  public onMetreIdsChange(ids: string[]): void {
+    this.metres.setValue(ids);
   }
 }
