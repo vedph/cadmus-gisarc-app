@@ -34,6 +34,7 @@
     "@myrmidon/cadmus-item-list": "^2.0.1",
     "@myrmidon/cadmus-item-search": "^2.0.0",
     "@myrmidon/cadmus-login": "^0.3.0",
+    "@myrmidon/cadmus-mat-physical-size": "^1.0.0",
     "@myrmidon/cadmus-part-general-pg": "^2.0.0",
     "@myrmidon/cadmus-part-general-ui": "^2.0.0",
     "@myrmidon/cadmus-part-philology-pg": "^2.0.0",

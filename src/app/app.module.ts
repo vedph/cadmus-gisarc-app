@@ -64,6 +64,7 @@ import { CadmusApiModule } from '@myrmidon/cadmus-api';
 import { CadmusCoreModule } from '@myrmidon/cadmus-core';
 import { CadmusGraphPgModule } from '@myrmidon/cadmus-graph-pg';
 import { CadmusGraphUiModule } from '@myrmidon/cadmus-graph-ui';
+import { CadmusMatPhysicalSizeModule } from '@myrmidon/cadmus-mat-physical-size';
 import { CadmusProfileCoreModule } from '@myrmidon/cadmus-profile-core';
 import { CadmusStateModule } from '@myrmidon/cadmus-state';
 import { CadmusUiModule } from '@myrmidon/cadmus-ui';
@@ -154,6 +155,7 @@ import { ITEM_BROWSER_KEYS } from './item-browser-keys';
     // cadmus
     CadmusApiModule,
     CadmusCoreModule,
+    CadmusMatPhysicalSizeModule,
     CadmusProfileCoreModule,
     CadmusStateModule,
     CadmusUiModule,
