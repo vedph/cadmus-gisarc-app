@@ -29,13 +29,16 @@ import { CadmusMatPhysicalSizeModule } from '@myrmidon/cadmus-mat-physical-size'
 import { CadmusRefsDecoratedCountsModule } from '@myrmidon/cadmus-refs-decorated-counts';
 import { CadmusStateModule } from '@myrmidon/cadmus-state';
 import { CadmusUiModule } from '@myrmidon/cadmus-ui';
+import { CadmusUiFlagsPickerModule } from '@myrmidon/cadmus-ui-flags-picker';
 
 // local
 import { EpiSupportPartComponent } from './epi-support-part/epi-support-part.component';
+import { EpiWritingPartComponent } from './epi-writing-part/epi-writing-part.component';
 
 @NgModule({
   declarations: [
-    EpiSupportPartComponent
+    EpiSupportPartComponent,
+    EpiWritingPartComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -65,11 +68,13 @@ import { EpiSupportPartComponent } from './epi-support-part/epi-support-part.com
     CadmusCoreModule,
     CadmusStateModule,
     CadmusUiModule,
+    CadmusUiFlagsPickerModule,
     CadmusMatPhysicalSizeModule,
     CadmusRefsDecoratedCountsModule
   ],
   exports: [
-    EpiSupportPartComponent
+    EpiSupportPartComponent,
+    EpiWritingPartComponent
   ],
 })
 export class CadmusGisarcPartUiModule {}

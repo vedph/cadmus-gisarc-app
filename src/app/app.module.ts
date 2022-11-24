@@ -76,6 +76,7 @@ import { CadmusRefsDecoratedCountsModule } from '@myrmidon/cadmus-refs-decorated
 import { CadmusThesaurusEditorModule } from '@myrmidon/cadmus-thesaurus-editor';
 import { CadmusThesaurusListModule } from '@myrmidon/cadmus-thesaurus-list';
 import { CadmusThesaurusUiModule } from '@myrmidon/cadmus-thesaurus-ui';
+import { CadmusUiFlagsPickerModule } from '@myrmidon/cadmus-ui-flags-picker';
 
 // local components
 import { AppRoutingModule } from './app-routing.module';
@@ -170,6 +171,7 @@ import { ITEM_BROWSER_KEYS } from './item-browser-keys';
     CadmusThesaurusEditorModule,
     CadmusThesaurusListModule,
     CadmusThesaurusUiModule,
+    CadmusUiFlagsPickerModule,
   ],
   providers: [
     // environment service
