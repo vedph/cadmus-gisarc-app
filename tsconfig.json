@@ -2,6 +2,14 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "paths": {
+      "@myrmidon/cadmus-gisarc-part-pg": [
+        "dist/myrmidon/cadmus-gisarc-part-pg"
+      ],
+      "@myrmidon/cadmus-gisarc-part-ui": [
+        "dist/myrmidon/cadmus-gisarc-part-ui"
+      ]
+    },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
