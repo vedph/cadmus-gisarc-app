@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,8 +20,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
 // cadmus
@@ -43,8 +42,7 @@ import { LocationPartComponent } from './location-part/location-part.component';
     LocationPartComponent
   ],
   imports: [
-    BrowserAnimationsModule,
-    BrowserModule,
+    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,

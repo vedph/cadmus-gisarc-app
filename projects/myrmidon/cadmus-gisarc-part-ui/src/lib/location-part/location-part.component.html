@@ -11,7 +11,7 @@
         <!-- latitude -->
         <mat-form-field>
           <mat-label>latitude</mat-label>
-          <input matInput [formControl]="latitude" />
+          <input matInput [formControl]="latitude" type="number" />
           <mat-error
             *ngIf="
               $any(latitude).errors?.required &&
@@ -24,7 +24,7 @@
         <!-- longitude -->
         <mat-form-field>
           <mat-label>longitude</mat-label>
-          <input matInput [formControl]="longitude" />
+          <input matInput [formControl]="longitude" type="number" />
           <mat-error
             *ngIf="
               $any(longitude).errors?.required &&
@@ -33,16 +33,14 @@
             >longitude required</mat-error
           >
         </mat-form-field>
-      </div>
 
-      <div class="form-row">
         <!-- hasAltitude -->
         <mat-checkbox [formControl]="hasAltitude">has altitude</mat-checkbox>
 
         <!-- altitude -->
-        <mat-form-field *ngIf="hasAltitude.value">
+        <mat-form-field *ngIf="hasAltitude.value" style="width: 6em">
           <mat-label>altitude</mat-label>
-          <input matInput [formControl]="altitude" />
+          <input matInput [formControl]="altitude" type="number" />
           <mat-error
             *ngIf="
               $any(altitude).errors?.required &&
@@ -55,7 +53,7 @@
 
       <!-- geometries -->
       <div>
-        <mat-form-field>
+        <mat-form-field class="long-text">
           <mat-label>geometries</mat-label>
           <textarea
             [formControl]="geometries"

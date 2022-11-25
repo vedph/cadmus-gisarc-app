@@ -42,6 +42,7 @@ import { LocationPartFeatureComponent } from './location-part-feature/location-p
 import { EpiSupportPartFeatureComponent } from './epi-support-part-feature/epi-support-part-feature.component';
 import { EpiWritingPartFeatureComponent } from './epi-writing-part-feature/epi-writing-part-feature.component';
 import { CadmusUiPgModule } from '@myrmidon/cadmus-ui-pg';
+import { CommonModule } from '@angular/common';
 
 export const RouterModuleForChild = RouterModule.forChild([
   {
@@ -71,8 +72,7 @@ export const RouterModuleForChild = RouterModule.forChild([
     EpiWritingPartFeatureComponent,
   ],
   imports: [
-    BrowserAnimationsModule,
-    BrowserModule,
+    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,

@@ -51,7 +51,7 @@
     "@myrmidon/cadmus-refs-external-ids": "^1.0.0",
     "@myrmidon/cadmus-refs-historical-date": "^1.0.0",
     "@myrmidon/cadmus-refs-lookup": "^1.0.0",
-    "@myrmidon/cadmus-refs-proper-name": "^1.0.0",
+    "@myrmidon/cadmus-refs-proper-name": "^1.0.1",
     "@myrmidon/cadmus-state": "^2.0.0",
     "@myrmidon/cadmus-text-block-view": "^1.0.0",
     "@myrmidon/cadmus-thesaurus-editor": "^2.0.0",
