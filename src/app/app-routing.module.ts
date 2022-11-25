@@ -115,7 +115,16 @@ const routes: Routes = [
       ),
     canActivate: [AuthJwtGuardService],
   },
-  // TODO: GISARC parts...
+  // GISARC parts
+  {
+    path: 'items/:iid/gisarc',
+    loadChildren: () =>
+      import('@myrmidon/cadmus-gisarc-part-pg').then(
+        (module) => module.CadmusGisarcPartPgModule
+      ),
+    canActivate: [AuthJwtGuardService],
+  },
+
   // fallback
   { path: '**', component: HomeComponent },
 ];

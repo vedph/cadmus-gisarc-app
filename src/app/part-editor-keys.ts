@@ -17,6 +17,11 @@ import {
   ORTHOGRAPHY_FRAGMENT_TYPEID,
 } from '@myrmidon/cadmus-part-philology-ui';
 import { PartEditorKeys } from '@myrmidon/cadmus-core';
+import {
+  EPI_SUPPORT_PART_TYPEID,
+  EPI_WRITING_PART_TYPEID,
+  LOCATION_PART_TYPEID,
+} from '@myrmidon/cadmus-gisarc-part-ui';
 
 const GENERAL = 'general';
 const PHILOLOGY = 'philology';
@@ -63,7 +68,16 @@ export const PART_EDITOR_KEYS: PartEditorKeys = {
   [TOKEN_TEXT_PART_TYPEID]: {
     part: GENERAL,
   },
-  // TODO: add GISARC parts
+  // GISARC parts
+  [EPI_SUPPORT_PART_TYPEID]: {
+    part: GISARC,
+  },
+  [EPI_WRITING_PART_TYPEID]: {
+    part: GISARC,
+  },
+  [LOCATION_PART_TYPEID]: {
+    part: GISARC,
+  },
   // layer parts
   [TOKEN_TEXT_LAYER_PART_TYPEID]: {
     part: GENERAL,

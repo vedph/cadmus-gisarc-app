@@ -17,7 +17,7 @@ import { LocationPart, LOCATION_PART_TYPEID } from '../location-part';
  * Thesauri: none.
  */
 @Component({
-  selector: 'gisarc-location-part',
+  selector: 'cadmus-gisarc-location-part',
   templateUrl: './location-part.component.html',
   styleUrls: ['./location-part.component.css'],
 })

@@ -9,7 +9,7 @@
     "test": "ng test",
     "build-ui": "ng build @myrmidon/cadmus-gisarc-part-ui",
     "build-pg": "ng build @myrmidon/cadmus-gisarc-part-pg",
-    "build-all": "npm run-script build-ui && npm run-script build-pg"
+    "build-lib": "npm run-script build-ui && npm run-script build-pg"
   },
   "private": true,
   "dependencies": {
