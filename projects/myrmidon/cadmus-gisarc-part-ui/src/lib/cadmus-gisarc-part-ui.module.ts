@@ -34,11 +34,13 @@ import { CadmusUiFlagsPickerModule } from '@myrmidon/cadmus-ui-flags-picker';
 // local
 import { EpiSupportPartComponent } from './epi-support-part/epi-support-part.component';
 import { EpiWritingPartComponent } from './epi-writing-part/epi-writing-part.component';
+import { LocationPartComponent } from './location-part/location-part.component';
 
 @NgModule({
   declarations: [
     EpiSupportPartComponent,
-    EpiWritingPartComponent
+    EpiWritingPartComponent,
+    LocationPartComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -74,7 +76,8 @@ import { EpiWritingPartComponent } from './epi-writing-part/epi-writing-part.com
   ],
   exports: [
     EpiSupportPartComponent,
-    EpiWritingPartComponent
+    EpiWritingPartComponent,
+    LocationPartComponent
   ],
 })
 export class CadmusGisarcPartUiModule {}
