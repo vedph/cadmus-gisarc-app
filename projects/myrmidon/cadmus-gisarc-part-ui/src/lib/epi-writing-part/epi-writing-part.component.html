@@ -100,25 +100,7 @@
                 >technique required</mat-error
               >
             </mat-form-field>
-            <!-- technique (free) -->
-            <mat-form-field *ngIf="!techEntries?.length">
-              <mat-label>technique</mat-label>
-              <input matInput [formControl]="technique" />
-              <mat-error
-                *ngIf="
-                  $any(technique).errors?.required &&
-                  (technique.dirty || technique.touched)
-                "
-                >technique required</mat-error
-              >
-              <mat-error
-                *ngIf="
-                  $any(technique).errors?.maxLength &&
-                  (technique.dirty || technique.touched)
-                "
-                >technique too long</mat-error
-              >
-            </mat-form-field>
+
             <!-- tool (bound) -->
             <mat-form-field *ngIf="toolEntries?.length">
               <mat-label>tool</mat-label>
@@ -128,21 +110,10 @@
                 }}</mat-option>
               </mat-select>
             </mat-form-field>
-            <!-- tool (free) -->
-            <mat-form-field *ngIf="!toolEntries?.length">
-              <mat-label>tool</mat-label>
-              <input matInput [formControl]="tool" />
-              <mat-error
-                *ngIf="
-                  $any(tool).errors?.maxLength && (tool.dirty || tool.touched)
-                "
-                >tool too long</mat-error
-              >
-            </mat-form-field>
           </div>
 
           <!-- counts -->
-          <div>
+          <div *ngIf="cidEntries?.length">
             <cadmus-refs-decorated-counts
               [idEntries]="cidEntries"
               [counts]="initialCounts"
@@ -151,8 +122,46 @@
           </div>
         </mat-tab>
 
+        <!-- TEXT TAB -->
+        <mat-tab label="text">
+          <!-- languages -->
+          <fieldset>
+            <legend>language(s)</legend>
+            <cadmus-ui-flags-picker
+              [flags]="lngFlags"
+              [selectedIds]="initialLanguages"
+              (selectedIdsChange)="onLngIdsChange($event)"
+            ></cadmus-ui-flags-picker>
+          </fieldset>
+
+          <!-- scriptFeatures -->
+          <fieldset *ngIf="scrFlags?.length">
+            <legend>script features</legend>
+            <cadmus-ui-flags-picker
+              [flags]="scrFlags"
+              [selectedIds]="initialScriptFeatures"
+              (selectedIdsChange)="onScriptIdsChange($event)"
+            ></cadmus-ui-flags-picker>
+          </fieldset>
+
+          <!-- hasPoetry -->
+          <div>
+            <mat-checkbox [formControl]="hasPoetry">has poetry</mat-checkbox>
+          </div>
+
+          <!-- metres -->
+          <fieldset *ngIf="mtrFlags?.length">
+            <legend>metres</legend>
+            <cadmus-ui-flags-picker
+              [flags]="mtrFlags"
+              [selectedIds]="initialMetres"
+              (selectedIdsChange)="onMetreIdsChange($event)"
+            ></cadmus-ui-flags-picker>
+          </fieldset>
+        </mat-tab>
+
         <!-- FIG TAB -->
-        <mat-tab label="figurative">
+        <mat-tab label="figurative" *ngIf="figTypeEntries?.length || frameEntries?.length || figFlags?.length">
           <!-- figType, fraType -->
           <div class="form-row">
             <!-- figType (bound) -->
@@ -171,25 +180,6 @@
                 >fig.type required</mat-error
               >
             </mat-form-field>
-            <!-- figType (free) -->
-            <mat-form-field *ngIf="!figTypeEntries?.length">
-              <mat-label>fig.type</mat-label>
-              <input matInput [formControl]="figType" />
-              <mat-error
-                *ngIf="
-                  $any(figType).errors?.required &&
-                  (figType.dirty || figType.touched)
-                "
-                >fig.type required</mat-error
-              >
-              <mat-error
-                *ngIf="
-                  $any(figType).errors?.maxLength &&
-                  (figType.dirty || figType.touched)
-                "
-                >fig.type too long</mat-error
-              >
-            </mat-form-field>
 
             <!-- frameType (bound) -->
             <mat-form-field *ngIf="frameEntries?.length">
@@ -200,65 +190,15 @@
                 }}</mat-option>
               </mat-select>
             </mat-form-field>
-            <!-- frameType (free) -->
-            <mat-form-field *ngIf="!frameEntries?.length">
-              <mat-label>frame type</mat-label>
-              <input matInput [formControl]="frameType" />
-              <mat-error
-                *ngIf="
-                  $any(frameType).errors?.maxLength &&
-                  (frameType.dirty || frameType.touched)
-                "
-                >frame too long</mat-error
-              >
-            </mat-form-field>
           </div>
 
           <!-- figFeatures -->
-          <fieldset>
+          <fieldset *ngIf="figFlags?.length">
             <legend>fig.features</legend>
             <cadmus-ui-flags-picker
               [flags]="figFlags"
               [selectedIds]="initialFigFeatures"
               (selectedIdsChange)="onFigIdsChange($event)"
-            ></cadmus-ui-flags-picker>
-          </fieldset>
-        </mat-tab>
-
-        <!-- TEXT TAB -->
-        <mat-tab label="text">
-          <!-- languages -->
-          <fieldset>
-            <legend>language(s)</legend>
-            <cadmus-ui-flags-picker
-              [flags]="lngFlags"
-              [selectedIds]="initialLanguages"
-              (selectedIdsChange)="onLngIdsChange($event)"
-            ></cadmus-ui-flags-picker>
-          </fieldset>
-
-          <!-- scriptFeatures -->
-          <fieldset>
-            <legend>script features</legend>
-            <cadmus-ui-flags-picker
-              [flags]="scrFlags"
-              [selectedIds]="initialScriptFeatures"
-              (selectedIdsChange)="onScriptIdsChange($event)"
-            ></cadmus-ui-flags-picker>
-          </fieldset>
-
-          <!-- hasPoetry -->
-          <div>
-            <mat-checkbox [formControl]="hasPoetry">has poetry</mat-checkbox>
-          </div>
-
-          <!-- metres -->
-          <fieldset>
-            <legend>metres</legend>
-            <cadmus-ui-flags-picker
-              [flags]="mtrFlags"
-              [selectedIds]="initialMetres"
-              (selectedIdsChange)="onMetreIdsChange($event)"
             ></cadmus-ui-flags-picker>
           </fieldset>
         </mat-tab>
