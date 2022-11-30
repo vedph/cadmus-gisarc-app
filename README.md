@@ -12,3 +12,9 @@ Quick Docker image build:
 1. `npm run build-lib`
 2. update version in `env.js` and `ng build`
 3. `docker build . -t vedph2020/cadmus-gisarc-app:1.0.0 -t vedph2020/cadmus-gisarc-app:latest` (replace with the current version).
+
+## History
+
+- 2022-11-30:
+  - updated packages.
+  - removed `@angular/flex-layout`.
