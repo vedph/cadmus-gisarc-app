@@ -197,7 +197,7 @@ export class EpiSupportPartComponent
     }
 
     // form
-    this.updateForm(data?.value);
+    this.updateForm(data?.value || undefined);
   }
 
   public onSizeChange(size: PhysicalSize): void {

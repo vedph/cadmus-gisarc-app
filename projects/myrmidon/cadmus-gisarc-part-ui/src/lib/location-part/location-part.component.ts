@@ -61,7 +61,7 @@ export class LocationPartComponent
     });
   }
 
-  private updateForm(part?: LocationPart): void {
+  private updateForm(part?: LocationPart | null): void {
     if (!part) {
       this.form.reset();
       return;

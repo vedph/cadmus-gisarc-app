@@ -15,6 +15,7 @@ Quick Docker image build:
 
 ## History
 
+- 2022-12-06: updated packages.
 - 2022-11-30:
   - updated packages.
   - removed `@angular/flex-layout`.

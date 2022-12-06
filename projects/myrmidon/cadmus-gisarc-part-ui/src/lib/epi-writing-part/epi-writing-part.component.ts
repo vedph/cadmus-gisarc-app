@@ -233,7 +233,7 @@ export class EpiWritingPartComponent
     return entries?.length ? entries[0].id : null;
   }
 
-  private updateForm(part?: EpiWritingPart): void {
+  private updateForm(part?: EpiWritingPart | null): void {
     if (!part) {
       this.form.reset();
       this.system.setValue(this.getDefaultEntryId(this.sysEntries) || '');
