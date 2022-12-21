@@ -1,5 +1,10 @@
 # Cadmus GISARC App
 
+- [Cadmus GISARC App](#cadmus-gisarc-app)
+  - [Docker](#docker)
+  - [History](#history)
+    - [1.0.0](#100)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
 
 - [models](https://github.com/vedph/cadmus-gisarc)
@@ -15,6 +20,9 @@ Quick Docker image build:
 
 ## History
 
+### 1.0.0
+
+- 2022-12-21: updated packages (for Monaco you need to update the glob pattern in `angular.json`: see [this readme](https://github.com/atularen/ngx-monaco-editor)).
 - 2022-12-16: updated Angular and Cadmus packages.
 - 2022-12-14: updated Angular and other 3rd-party packages.
 - 2022-12-06: updated packages.
