@@ -115,12 +115,21 @@ const routes: Routes = [
       ),
     canActivate: [AuthJwtGuardService],
   },
-  // GISARC parts
+  // geography
   {
-    path: 'items/:iid/gisarc',
+    path: 'items/:iid/geography',
     loadChildren: () =>
-      import('@myrmidon/cadmus-gisarc-part-pg').then(
-        (module) => module.CadmusGisarcPartPgModule
+      import('@myrmidon/cadmus-part-geo-pg').then(
+        (module) => module.CadmusPartGeoPgModule
+      ),
+    canActivate: [AuthJwtGuardService],
+  },
+  // epigraphy
+  {
+    path: 'items/:iid/epigraphy',
+    loadChildren: () =>
+      import('@myrmidon/cadmus-part-epigraphy-pg').then(
+        (module) => module.CadmusPartEpigraphyPgModule
       ),
     canActivate: [AuthJwtGuardService],
   },

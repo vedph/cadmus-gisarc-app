@@ -7,7 +7,6 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
 
-- [models](https://github.com/vedph/cadmus-gisarc)
 - [API](https://github.com/vedph/cadmus-gisarc-api)
 
 ## Docker
@@ -19,6 +18,8 @@ Quick Docker image build:
 3. `docker build . -t vedph2020/cadmus-gisarc-app:1.0.0 -t vedph2020/cadmus-gisarc-app:latest` (replace with the current version).
 
 ## History
+
+- 2023-01-04: refactored to exclude Gisarc specific components replacing them with geography and epigraphy generic components.
 
 ### 1.0.0
 

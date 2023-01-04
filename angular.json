@@ -99,66 +99,6 @@
           }
         }
       }
-    },
-    "@myrmidon/cadmus-gisarc-part-ui": {
-      "projectType": "library",
-      "root": "projects/myrmidon/cadmus-gisarc-part-ui",
-      "sourceRoot": "projects/myrmidon/cadmus-gisarc-part-ui/src",
-      "prefix": "gisarc",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "projects/myrmidon/cadmus-gisarc-part-ui/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/myrmidon/cadmus-gisarc-part-ui/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/myrmidon/cadmus-gisarc-part-ui/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "tsConfig": "projects/myrmidon/cadmus-gisarc-part-ui/tsconfig.spec.json",
-            "polyfills": ["zone.js", "zone.js/testing"]
-          }
-        }
-      }
-    },
-    "@myrmidon/cadmus-gisarc-part-pg": {
-      "projectType": "library",
-      "root": "projects/myrmidon/cadmus-gisarc-part-pg",
-      "sourceRoot": "projects/myrmidon/cadmus-gisarc-part-pg/src",
-      "prefix": "gisarc",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "projects/myrmidon/cadmus-gisarc-part-pg/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/myrmidon/cadmus-gisarc-part-pg/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/myrmidon/cadmus-gisarc-part-pg/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "tsConfig": "projects/myrmidon/cadmus-gisarc-part-pg/tsconfig.spec.json",
-            "polyfills": ["zone.js", "zone.js/testing"]
-          }
-        }
-      }
     }
   }
 }

@@ -12,21 +12,26 @@ import {
   TOKEN_TEXT_PART_TYPEID,
   COMMENT_FRAGMENT_TYPEID,
   PIN_LINKS_PART_TYPEID,
+  CHRONOLOGY_FRAGMENT_TYPEID,
 } from '@myrmidon/cadmus-part-general-ui';
 import {
   APPARATUS_FRAGMENT_TYPEID,
   ORTHOGRAPHY_FRAGMENT_TYPEID,
 } from '@myrmidon/cadmus-part-philology-ui';
 import { PartEditorKeys } from '@myrmidon/cadmus-core';
-import {
-  EPI_SUPPORT_PART_TYPEID,
-  EPI_WRITING_PART_TYPEID,
-  LOCATION_PART_TYPEID,
-} from '@myrmidon/cadmus-gisarc-part-ui';
+
+import { ASSERTED_LOCATIONS_PART_TYPEID } from '@myrmidon/cadmus-part-geo-asserted-locations';
+import { ASSERTED_TOPONYMS_PART_TYPEID } from '@myrmidon/cadmus-part-geo-asserted-toponyms';
+
+import { EPI_SUPPORT_PART_TYPEID } from '@myrmidon/cadmus-part-epigraphy-support';
+import { EPI_WRITING_PART_TYPEID } from '@myrmidon/cadmus-part-epigraphy-writing';
+import { EPI_LIGATURES_FRAGMENT_TYPEID } from '@myrmidon/cadmus-fr-epigraphy-ligatures';
 
 const GENERAL = 'general';
 const PHILOLOGY = 'philology';
-const GISARC = 'gisarc';
+const GEOGRAPHY = 'geography';
+const EPIGRAPHY = 'epigraphy';
+
 const TOKEN_TEXT_LAYER_PART_TYPEID = 'it.vedph.token-text-layer';
 
 /**
@@ -72,23 +77,32 @@ export const PART_EDITOR_KEYS: PartEditorKeys = {
   [TOKEN_TEXT_PART_TYPEID]: {
     part: GENERAL,
   },
-  // GISARC parts
+  // geography
+  [ASSERTED_LOCATIONS_PART_TYPEID]: {
+    part: GEOGRAPHY,
+  },
+  [ASSERTED_TOPONYMS_PART_TYPEID]: {
+    part: GEOGRAPHY,
+  },
+  // epigraphy
   [EPI_SUPPORT_PART_TYPEID]: {
-    part: GISARC,
+    part: EPIGRAPHY,
   },
   [EPI_WRITING_PART_TYPEID]: {
-    part: GISARC,
-  },
-  [LOCATION_PART_TYPEID]: {
-    part: GISARC,
+    part: EPIGRAPHY,
   },
   // layer parts
   [TOKEN_TEXT_LAYER_PART_TYPEID]: {
     part: GENERAL,
     fragments: {
-      [APPARATUS_FRAGMENT_TYPEID]: PHILOLOGY,
+      // general
+      [CHRONOLOGY_FRAGMENT_TYPEID]: GENERAL,
       [COMMENT_FRAGMENT_TYPEID]: GENERAL,
+      // philology
+      [APPARATUS_FRAGMENT_TYPEID]: PHILOLOGY,
       [ORTHOGRAPHY_FRAGMENT_TYPEID]: PHILOLOGY,
+      // epigraphy
+      [EPI_LIGATURES_FRAGMENT_TYPEID]: EPIGRAPHY,
     },
   },
 };
