@@ -19,6 +19,7 @@ Quick Docker image build:
 
 ## History
 
+- 2023-01-05: added MapBoxGL.
 - 2023-01-04: refactored to exclude Gisarc specific components replacing them with geography and epigraphy generic components.
 
 ### 1.0.0

@@ -43,6 +43,8 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 // ngx-markdown
 import { MarkdownModule } from 'ngx-markdown';
+// mapbox
+import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 
 // myrmidon
 import { EnvServiceProvider, NgToolsModule } from '@myrmidon/ng-tools';
@@ -143,6 +145,7 @@ import { ITEM_BROWSER_KEYS } from './item-browser-keys';
     // vendors
     MonacoEditorModule.forRoot(),
     MarkdownModule.forRoot(),
+    NgxMapboxGLModule,
     // myrmidon
     NgToolsModule,
     NgMatToolsModule,
