@@ -19,6 +19,7 @@ Quick Docker image build:
 
 ## History
 
+- 2023-02-07: updated Angular and packages.
 - 2023-01-20: updated packages and changed `hid` to `eid` in lookup definitions.
 - 2023-01-17: updated packages.
 - 2023-01-05: added MapBoxGL.
