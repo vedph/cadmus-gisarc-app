@@ -28,6 +28,8 @@ where `/opt/cadmus/env.js` is the path to the modified `env.js` file in your hos
 
 ## History
 
+- 2023-02-08: homepage content.
+
 ### 1.0.1
 
 - 2023-02-07: updated Angular and packages.

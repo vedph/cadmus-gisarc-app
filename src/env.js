@@ -5,5 +5,5 @@
   // environment-dependent settings
   window.__env.apiUrl = "http://localhost:5123/api/";
   window.__env.version = "1.0.1";
-  window.__env.mapbox_token = "pk.eyJ1IjoibmFmdGlzIiwiYSI6ImNrcGh6Mzd3dzA5dTUyb29mMmp1YmgzNm4ifQ.5xIgNTzWYwf8MchLs_4KOA";
+  window.__env.mapbox_token = "pk.eyJ1IjoibGl2aWF0YWdsaWFwaWV0cmEiLCJhIjoiY2xkdmRsOThpMGV2ZTNxcG5lb2FmdTFmciJ9.TqJXUUanoiGwo3d8b3nVMw";
 })(this);
