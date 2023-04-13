@@ -35,7 +35,7 @@
     "@myrmidon/cadmus-item-list": "^2.0.6",
     "@myrmidon/cadmus-item-search": "^2.0.2",
     "@myrmidon/cadmus-mat-physical-size": "^1.0.3",
-    "@myrmidon/cadmus-part-epigraphy-formula-patterns": "^0.0.1",
+    "@myrmidon/cadmus-part-epigraphy-formula-patterns": "^0.0.2",
     "@myrmidon/cadmus-part-epigraphy-pg": "^0.0.2",
     "@myrmidon/cadmus-part-epigraphy-support": "^0.0.1",
     "@myrmidon/cadmus-part-epigraphy-writing": "^0.0.2",
