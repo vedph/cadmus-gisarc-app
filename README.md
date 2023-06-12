@@ -33,6 +33,7 @@ where `/opt/cadmus/env.js` is the path to the modified `env.js` file in your hos
 
 ## History
 
+- 2023-06-07: updated packages.
 - 2023-05-25: updated packages.
 
 ### 3.0.0
