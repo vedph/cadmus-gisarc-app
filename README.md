@@ -34,6 +34,8 @@ where `/opt/cadmus/env.js` is the path to the modified `env.js` file in your hos
 
 ## History
 
+- 2023-06-12: fix to index lookup definitions for formulas.
+
 ### 3.0.1
 
 - 2023-06-12: updated Angular.
