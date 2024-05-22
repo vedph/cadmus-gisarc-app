@@ -1,19 +1,5 @@
 # Cadmus GISARC App
 
-- [Cadmus GISARC App](#cadmus-gisarc-app)
-  - [Docker](#docker)
-  - [History](#history)
-    - [5.0.0](#500)
-    - [4.0.0](#400)
-    - [3.0.1](#301)
-    - [3.0.0](#300)
-    - [2.0.0](#200)
-    - [1.0.4](#104)
-    - [1.0.3](#103)
-    - [1.0.2](#102)
-    - [1.0.1](#101)
-    - [1.0.0](#100)
-
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
 
 - [API](https://github.com/vedph/cadmus-gisarc-api)
@@ -36,6 +22,11 @@ where `/opt/cadmus/env.js` is the path to the modified `env.js` file in your hos
 
 ## History
 
+- 2024-05-22:
+  - updated Angular and packages.
+  - replaced MapBoxGL with Leaflet.
+  - replaced Monaco wrapper as per [bricks V2](https://github.com/vedph/cadmus-bricks-shell-v2).
+  - added text plugins and lookup services.
 - 2024-02-01: updated Angular and packages.
 
 ### 5.0.0

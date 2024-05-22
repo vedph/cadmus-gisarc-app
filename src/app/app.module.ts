@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+  HttpClientJsonpModule,
+} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
@@ -39,12 +43,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 
-// ngx-monaco
-import { MonacoEditorModule } from 'ngx-monaco-editor';
-// ngx-markdown
+// vendor
 import { MarkdownModule } from 'ngx-markdown';
-// mapbox
-import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { NgeMonacoModule } from '@cisstech/nge/monaco';
 
 // myrmidon
 import { EnvServiceProvider, NgToolsModule } from '@myrmidon/ng-tools';
@@ -56,16 +58,33 @@ import {
 import { AuthJwtAdminModule } from '@myrmidon/auth-jwt-admin';
 
 // cadmus bricks
-import { CadmusRefsDocReferencesModule } from '@myrmidon/cadmus-refs-doc-references';
-import { CadmusRefsHistoricalDateModule } from '@myrmidon/cadmus-refs-historical-date';
-import { CadmusRefsAssertedIdsModule } from '@myrmidon/cadmus-refs-asserted-ids';
+import {
+  CADMUS_TEXT_ED_BINDINGS_TOKEN,
+  CADMUS_TEXT_ED_SERVICE_OPTIONS_TOKEN,
+} from '@myrmidon/cadmus-text-ed';
+import {
+  MdBoldCtePlugin,
+  MdItalicCtePlugin,
+  MdLinkCtePlugin,
+} from '@myrmidon/cadmus-text-ed-md';
+import { TxtEmojiCtePlugin } from '@myrmidon/cadmus-text-ed-txt';
+import { DecoratedCountsComponent } from '@myrmidon/cadmus-refs-decorated-counts';
+import { FlagsPickerComponent } from '@myrmidon/cadmus-ui-flags-picker';
+import { DocReferencesComponent } from '@myrmidon/cadmus-refs-doc-references';
+import { HistoricalDateComponent } from '@myrmidon/cadmus-refs-historical-date';
+import { AssertedIdsComponent } from '@myrmidon/cadmus-refs-asserted-ids';
+import { GEONAMES_USERNAME_TOKEN } from '@myrmidon/cadmus-refs-geonames-lookup';
+import { PROXY_INTERCEPTOR_OPTIONS } from '@myrmidon/cadmus-refs-lookup';
 
 // cadmus
 import { CadmusApiModule } from '@myrmidon/cadmus-api';
 import { CadmusCoreModule } from '@myrmidon/cadmus-core';
 import { CadmusGraphPgModule } from '@myrmidon/cadmus-graph-pg';
 import { CadmusGraphUiModule } from '@myrmidon/cadmus-graph-ui';
-import { CadmusMatPhysicalSizeModule } from '@myrmidon/cadmus-mat-physical-size';
+import {
+  PhysicalSizeComponent,
+  PhysicalSizePipe,
+} from '@myrmidon/cadmus-mat-physical-size';
 import { CadmusProfileCoreModule } from '@myrmidon/cadmus-profile-core';
 import { CadmusStateModule } from '@myrmidon/cadmus-state';
 import { CadmusUiModule } from '@myrmidon/cadmus-ui';
@@ -73,11 +92,9 @@ import { CadmusUiPgModule } from '@myrmidon/cadmus-ui-pg';
 import { CadmusItemEditorModule } from '@myrmidon/cadmus-item-editor';
 import { CadmusItemListModule } from '@myrmidon/cadmus-item-list';
 import { CadmusItemSearchModule } from '@myrmidon/cadmus-item-search';
-import { CadmusRefsDecoratedCountsModule } from '@myrmidon/cadmus-refs-decorated-counts';
 import { CadmusThesaurusEditorModule } from '@myrmidon/cadmus-thesaurus-editor';
 import { CadmusThesaurusListModule } from '@myrmidon/cadmus-thesaurus-list';
 import { CadmusThesaurusUiModule } from '@myrmidon/cadmus-thesaurus-ui';
-import { CadmusUiFlagsPickerModule } from '@myrmidon/cadmus-ui-flags-picker';
 
 // local components
 import { AppRoutingModule } from './app-routing.module';
@@ -106,6 +123,7 @@ import { ITEM_BROWSER_KEYS } from './item-browser-keys';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    HttpClientJsonpModule,
     HttpClientModule,
     // routing
     AppRoutingModule,
@@ -143,22 +161,25 @@ import { ITEM_BROWSER_KEYS } from './item-browser-keys';
     MatToolbarModule,
     MatTreeModule,
     // vendors
-    MonacoEditorModule.forRoot(),
+    LeafletModule,
     MarkdownModule.forRoot(),
-    NgxMapboxGLModule,
+    NgeMonacoModule.forRoot({}),
     // myrmidon
     NgToolsModule,
     NgMatToolsModule,
     AuthJwtLoginModule,
     AuthJwtAdminModule,
     // cadmus bricks
-    CadmusRefsDocReferencesModule,
-    CadmusRefsHistoricalDateModule,
-    CadmusRefsAssertedIdsModule,
+    DocReferencesComponent,
+    HistoricalDateComponent,
+    AssertedIdsComponent,
+    PhysicalSizeComponent,
+    PhysicalSizePipe,
+    DecoratedCountsComponent,
+    FlagsPickerComponent,
     // cadmus
     CadmusApiModule,
     CadmusCoreModule,
-    CadmusMatPhysicalSizeModule,
     CadmusProfileCoreModule,
     CadmusStateModule,
     CadmusUiModule,
@@ -168,11 +189,9 @@ import { ITEM_BROWSER_KEYS } from './item-browser-keys';
     CadmusItemEditorModule,
     CadmusItemListModule,
     CadmusItemSearchModule,
-    CadmusRefsDecoratedCountsModule,
     CadmusThesaurusEditorModule,
     CadmusThesaurusListModule,
     CadmusThesaurusUiModule,
-    CadmusUiFlagsPickerModule,
   ],
   providers: [
     // environment service
@@ -201,6 +220,67 @@ import { ITEM_BROWSER_KEYS } from './item-browser-keys';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthJwtInterceptor,
       multi: true,
+    },
+    // text plugins
+    // provide each single plugin
+    MdBoldCtePlugin,
+    MdItalicCtePlugin,
+    TxtEmojiCtePlugin,
+    MdLinkCtePlugin,
+    // provide a factory so that plugins can be instantiated via DI
+    {
+      provide: CADMUS_TEXT_ED_SERVICE_OPTIONS_TOKEN,
+      useFactory: (
+        mdBoldCtePlugin: MdBoldCtePlugin,
+        mdItalicCtePlugin: MdItalicCtePlugin,
+        txtEmojiCtePlugin: TxtEmojiCtePlugin,
+        mdLinkCtePlugin: MdLinkCtePlugin
+      ) => {
+        return {
+          plugins: [
+            mdBoldCtePlugin,
+            mdItalicCtePlugin,
+            txtEmojiCtePlugin,
+            mdLinkCtePlugin,
+          ],
+        };
+      },
+      deps: [
+        MdBoldCtePlugin,
+        MdItalicCtePlugin,
+        TxtEmojiCtePlugin,
+        MdLinkCtePlugin,
+      ],
+    },
+    // monaco bindings for plugins
+    // 2080 = monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyB;
+    // 2087 = monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyI;
+    // 2083 = monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyE;
+    // 2090 = monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyL;
+    {
+      provide: CADMUS_TEXT_ED_BINDINGS_TOKEN,
+      useValue: {
+        2080: 'md.bold', // Ctrl+B
+        2087: 'md.italic', // Ctrl+I
+        2083: 'txt.emoji', // Ctrl+E
+        2090: 'md.link', // Ctrl+L
+      },
+    },
+    // lookup
+    {
+      provide: GEONAMES_USERNAME_TOKEN,
+      useValue: 'myrmex',
+    },
+    // proxy
+    {
+      provide: PROXY_INTERCEPTOR_OPTIONS,
+      useValue: {
+        proxyUrl: (window as any).__env?.apiUrl + 'proxy',
+        urls: [
+          'http://lookup.dbpedia.org/api/search',
+          'http://lookup.dbpedia.org/api/prefix',
+        ],
+      },
     },
   ],
   bootstrap: [AppComponent],
