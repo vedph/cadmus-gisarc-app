@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  HttpClientModule,
-  HTTP_INTERCEPTORS,
-  HttpClientJsonpModule,
+  provideHttpClient,
+  withInterceptors,
+  withJsonpSupport,
 } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -52,8 +52,8 @@ import { NgeMonacoModule } from '@cisstech/nge/monaco';
 import { EnvServiceProvider, NgToolsModule } from '@myrmidon/ng-tools';
 import { NgMatToolsModule } from '@myrmidon/ng-mat-tools';
 import {
-  AuthJwtInterceptor,
   AuthJwtLoginModule,
+  authJwtInterceptor,
 } from '@myrmidon/auth-jwt-login';
 import { AuthJwtAdminModule } from '@myrmidon/auth-jwt-admin';
 
@@ -117,14 +117,13 @@ import { ITEM_BROWSER_KEYS } from './item-browser-keys';
     RegisterUserPageComponent,
     ResetPasswordComponent,
   ],
+  bootstrap: [AppComponent],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    HttpClientJsonpModule,
-    HttpClientModule,
     // routing
     AppRoutingModule,
     // material
@@ -194,6 +193,10 @@ import { ITEM_BROWSER_KEYS } from './item-browser-keys';
     CadmusThesaurusUiModule,
   ],
   providers: [
+    provideHttpClient(
+      withInterceptors([authJwtInterceptor]),
+      withJsonpSupport()
+    ),
     // environment service
     EnvServiceProvider,
     // parts and fragments type IDs to editor group keys mappings
@@ -213,13 +216,6 @@ import { ITEM_BROWSER_KEYS } from './item-browser-keys';
     {
       provide: 'itemBrowserKeys',
       useValue: ITEM_BROWSER_KEYS,
-    },
-    // HTTP interceptor
-    // https://medium.com/@ryanchenkie_40935/angular-authentication-using-the-http-client-and-http-interceptors-2f9d1540eb8
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthJwtInterceptor,
-      multi: true,
     },
     // text plugins
     // provide each single plugin
@@ -283,6 +279,5 @@ import { ITEM_BROWSER_KEYS } from './item-browser-keys';
       },
     },
   ],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}
