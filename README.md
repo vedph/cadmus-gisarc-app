@@ -22,6 +22,7 @@ where `/opt/cadmus/env.js` is the path to the modified `env.js` file in your hos
 
 ## History
 
+- 2024-09-07: updated Angular and packages.
 - 2024-05-24: ⚠️ upgraded to Angular 18.
 - 2024-05-22:
   - updated Angular and packages.
