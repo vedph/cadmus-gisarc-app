@@ -21,9 +21,8 @@
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets", "src/env.js"],
             "styles": [
-              "@angular/material/prebuilt-themes/indigo-pink.css",
               "./node_modules/leaflet/dist/leaflet.css",
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": ["node_modules/marked/marked.min.js"],
             "sourceMap": {
@@ -84,10 +83,7 @@
             "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": [
-              "@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css"
-            ],
+            "styles": ["src/styles.scss"],
             "scripts": []
           }
         }
