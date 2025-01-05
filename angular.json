@@ -32,7 +32,12 @@
               "vendor": true
             },
             "browser": "src/main.ts",
-            "allowedCommonJsDependencies": ["diff-match-patch", "leaflet"]
+            "allowedCommonJsDependencies": [
+              "diff-match-patch",
+              "leaflet",
+              "webcola",
+              "dagre"
+            ]
           },
           "configurations": {
             "production": {

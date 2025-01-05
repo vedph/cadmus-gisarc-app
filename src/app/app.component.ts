@@ -10,19 +10,15 @@ import { DbpediaRefLookupService } from '@myrmidon/cadmus-refs-dbpedia-lookup';
 import { GeoNamesRefLookupService } from '@myrmidon/cadmus-refs-geonames-lookup';
 import { RefLookupConfig } from '@myrmidon/cadmus-refs-lookup';
 
-import {
-  AuthJwtService,
-  GravatarService,
-  User,
-} from '@myrmidon/auth-jwt-login';
-import { EnvService, RamStorageService } from '@myrmidon/ng-tools';
+import { AuthJwtService, User } from '@myrmidon/auth-jwt-login';
+import { EnvService, RamStorageService } from '@myrmidon/ngx-tools';
 import { AppRepository } from '@myrmidon/cadmus-state';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
-    standalone: false
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+  standalone: false,
 })
 export class AppComponent implements OnInit, OnDestroy {
   private _authSub?: Subscription;
@@ -37,7 +33,6 @@ export class AppComponent implements OnInit, OnDestroy {
     @Inject('itemBrowserKeys')
     private _itemBrowserKeys: { [key: string]: string },
     private _authService: AuthJwtService,
-    private _gravatarService: GravatarService,
     private _appRepository: AppRepository,
     private _router: Router,
     env: EnvService,

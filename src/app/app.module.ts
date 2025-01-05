@@ -49,13 +49,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { NgeMonacoModule } from '@cisstech/nge/monaco';
 
 // myrmidon
-import { EnvServiceProvider, NgToolsModule } from '@myrmidon/ng-tools';
-import { NgMatToolsModule } from '@myrmidon/ng-mat-tools';
-import {
-  AuthJwtLoginModule,
-  authJwtInterceptor,
-} from '@myrmidon/auth-jwt-login';
-import { AuthJwtAdminModule } from '@myrmidon/auth-jwt-admin';
+import { authJwtInterceptor, AuthJwtLoginComponent, GravatarPipe } from '@myrmidon/auth-jwt-login';
 
 // cadmus bricks
 import {
@@ -68,33 +62,8 @@ import {
   MdLinkCtePlugin,
 } from '@myrmidon/cadmus-text-ed-md';
 import { TxtEmojiCtePlugin } from '@myrmidon/cadmus-text-ed-txt';
-import { DecoratedCountsComponent } from '@myrmidon/cadmus-refs-decorated-counts';
-import { FlagsPickerComponent } from '@myrmidon/cadmus-ui-flags-picker';
-import { DocReferencesComponent } from '@myrmidon/cadmus-refs-doc-references';
-import { HistoricalDateComponent } from '@myrmidon/cadmus-refs-historical-date';
-import { AssertedIdsComponent } from '@myrmidon/cadmus-refs-asserted-ids';
 import { GEONAMES_USERNAME_TOKEN } from '@myrmidon/cadmus-refs-geonames-lookup';
 import { PROXY_INTERCEPTOR_OPTIONS } from '@myrmidon/cadmus-refs-lookup';
-
-// cadmus
-import { CadmusApiModule } from '@myrmidon/cadmus-api';
-import { CadmusCoreModule } from '@myrmidon/cadmus-core';
-import { CadmusGraphPgModule } from '@myrmidon/cadmus-graph-pg';
-import { CadmusGraphUiModule } from '@myrmidon/cadmus-graph-ui';
-import {
-  PhysicalSizeComponent,
-  PhysicalSizePipe,
-} from '@myrmidon/cadmus-mat-physical-size';
-import { CadmusProfileCoreModule } from '@myrmidon/cadmus-profile-core';
-import { CadmusStateModule } from '@myrmidon/cadmus-state';
-import { CadmusUiModule } from '@myrmidon/cadmus-ui';
-import { CadmusUiPgModule } from '@myrmidon/cadmus-ui-pg';
-import { CadmusItemEditorModule } from '@myrmidon/cadmus-item-editor';
-import { CadmusItemListModule } from '@myrmidon/cadmus-item-list';
-import { CadmusItemSearchModule } from '@myrmidon/cadmus-item-search';
-import { CadmusThesaurusEditorModule } from '@myrmidon/cadmus-thesaurus-editor';
-import { CadmusThesaurusListModule } from '@myrmidon/cadmus-thesaurus-list';
-import { CadmusThesaurusUiModule } from '@myrmidon/cadmus-thesaurus-ui';
 
 // local components
 import { AppRoutingModule } from './app-routing.module';
@@ -107,6 +76,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { PART_EDITOR_KEYS } from './part-editor-keys';
 import { INDEX_LOOKUP_DEFINITIONS } from './index-lookup-definitions';
 import { ITEM_BROWSER_KEYS } from './item-browser-keys';
+import { FlagSetComponent } from '@myrmidon/cadmus-ui-flag-set';
+import { AuthJwtRegistrationComponent, UserListComponent } from '@myrmidon/auth-jwt-admin';
 
 @NgModule({
   declarations: [
@@ -164,41 +135,16 @@ import { ITEM_BROWSER_KEYS } from './item-browser-keys';
     MarkdownModule.forRoot(),
     NgeMonacoModule.forRoot({}),
     // myrmidon
-    NgToolsModule,
-    NgMatToolsModule,
-    AuthJwtLoginModule,
-    AuthJwtAdminModule,
-    // cadmus bricks
-    DocReferencesComponent,
-    HistoricalDateComponent,
-    AssertedIdsComponent,
-    PhysicalSizeComponent,
-    PhysicalSizePipe,
-    DecoratedCountsComponent,
-    FlagsPickerComponent,
-    // cadmus
-    CadmusApiModule,
-    CadmusCoreModule,
-    CadmusProfileCoreModule,
-    CadmusStateModule,
-    CadmusUiModule,
-    CadmusUiPgModule,
-    CadmusGraphPgModule,
-    CadmusGraphUiModule,
-    CadmusItemEditorModule,
-    CadmusItemListModule,
-    CadmusItemSearchModule,
-    CadmusThesaurusEditorModule,
-    CadmusThesaurusListModule,
-    CadmusThesaurusUiModule,
+    GravatarPipe,
+    AuthJwtLoginComponent,
+    UserListComponent,
+    AuthJwtRegistrationComponent,
   ],
   providers: [
     provideHttpClient(
       withInterceptors([authJwtInterceptor]),
       withJsonpSupport()
     ),
-    // environment service
-    EnvServiceProvider,
     // parts and fragments type IDs to editor group keys mappings
     // https://github.com/nrwl/nx/issues/208#issuecomment-384102058
     // inject like: @Inject('partEditorKeys') partEditorKeys: PartEditorKeys
